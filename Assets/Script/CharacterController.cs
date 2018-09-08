@@ -71,7 +71,7 @@ public class CharacterController : MonoBehaviour {
         Cursor.visible = !m_lockCursor;
 
         if (Input.GetButtonDown("Fire1")) {
-            Debug.Log("Starting");
+            //Debug.Log("Starting");
             StartCoroutine(CameraShake());
         }
 
@@ -124,7 +124,7 @@ public class CharacterController : MonoBehaviour {
         }
 
         m_CharacterCamera.transform.localPosition = cameraOriginalPos;
-        Debug.Log("Ending");
+        //Debug.Log("Ending");
     }
 
 }
