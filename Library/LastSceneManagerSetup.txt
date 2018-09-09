@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/HealthbarPlayerTest.unity
+- path: Assets/Scenes/HealthbarTest.unity
   isLoaded: 1
   isActive: 1
