@@ -77,7 +77,7 @@ public class CharacterController : MonoBehaviour {
 
         if (Input.GetKey("space")) {
             Debug.Log("Starting");
-            StartCoroutine(CameraShake());
+            //StartCoroutine(CameraShake());
         }
 
     }
@@ -112,7 +112,7 @@ public class CharacterController : MonoBehaviour {
         this.Magnitude = m_magnitude;
     }
 
-
+    /*
     IEnumerator CameraShake() {
         Vector3 cameraOriginalPos = CharacterCamera.transform.localPosition;
 
@@ -131,7 +131,7 @@ public class CharacterController : MonoBehaviour {
 
         CharacterCamera.transform.localPosition = cameraOriginalPos;
         Debug.Log("Ending");
-    }
+    }*/
 
     void PickupObject() {
 

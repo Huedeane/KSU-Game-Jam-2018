@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
@@ -28,6 +29,23 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
 
+        //Object Pickup Variable
+        [SerializeField]
+        private bool m_ObjectFocus = false;
+        private string m_InteractText = "";
+        private bool m_ObjectInHand = false;
+
+        //Camera Shake Variable
+        [SerializeField]
+        private float m_Duration = 1f;
+        [SerializeField]
+        private float m_Magnitude = 5f;
+
+        //Component
+        [SerializeField]
+        private Camera m_CharacterCamera;
+        private GameObject m_Character;
+
         private Camera m_Camera;
         private bool m_Jump;
         private float m_YRotation;
@@ -42,6 +60,97 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
+        public bool ObjectFocus
+        {
+            get
+            {
+                return m_ObjectFocus;
+            }
+
+            set
+            {
+                m_ObjectFocus = value;
+            }
+        }
+
+        public string InteractText
+        {
+            get
+            {
+                return m_InteractText;
+            }
+
+            set
+            {
+                m_InteractText = value;
+            }
+        }
+
+        public bool ObjectInHand
+        {
+            get
+            {
+                return m_ObjectInHand;
+            }
+
+            set
+            {
+                m_ObjectInHand = value;
+            }
+        }
+
+        public float Duration
+        {
+            get
+            {
+                return m_Duration;
+            }
+
+            set
+            {
+                m_Duration = value;
+            }
+        }
+
+        public float Magnitude
+        {
+            get
+            {
+                return m_Magnitude;
+            }
+
+            set
+            {
+                m_Magnitude = value;
+            }
+        }
+
+        public Camera CharacterCamera
+        {
+            get
+            {
+                return m_CharacterCamera;
+            }
+
+            set
+            {
+                m_CharacterCamera = value;
+            }
+        }
+
+        public GameObject Character
+        {
+            get
+            {
+                return m_Character;
+            }
+
+            set
+            {
+                m_Character = value;
+            }
+        }
+
         // Use this for initialization
         private void Start()
         {
@@ -55,12 +164,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+            Character = this.gameObject;
         }
 
 
         // Update is called once per frame
         private void Update()
         {
+            PickupObject();
             RotateView();
             // the jump state needs to read here to make sure it is not missed
             if (!m_Jump)
@@ -81,6 +192,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
+
+            if (Input.GetKey("space"))
+            {
+                Debug.Log("Starting");
+                StartCoroutine(CameraShake());
+            }
         }
 
 
@@ -89,6 +206,28 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_AudioSource.clip = m_LandSound;
             m_AudioSource.Play();
             m_NextStep = m_StepCycle + .5f;
+        }
+
+        IEnumerator CameraShake()
+        {
+            Vector3 cameraOriginalPos = CharacterCamera.transform.localPosition;
+
+            float elapsed = 0.0f;
+
+            while (elapsed < Duration)
+            {
+                float x = Random.Range(-1f, 1f) * Magnitude;
+                float y = Random.Range(-1f, 1f) * Magnitude;
+
+                CharacterCamera.transform.localPosition = new Vector3(x, y, cameraOriginalPos.z);
+
+                elapsed += Time.deltaTime;
+
+                yield return null;
+            }
+
+            CharacterCamera.transform.localPosition = cameraOriginalPos;
+            Debug.Log("Ending");
         }
 
 
@@ -131,6 +270,35 @@ namespace UnityStandardAssets.Characters.FirstPerson
             UpdateCameraPosition(speed);
 
             m_MouseLook.UpdateCursorLock();
+        }
+
+        void PickupObject()
+        {
+
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, 2.5f))
+            {
+
+                GameObject hitObject = hit.transform.gameObject;
+
+                if (hitObject.tag == "PickupAble" && hitObject != null && ObjectInHand == false)
+                {
+                    ObjectFocus = true;
+                    InteractText = "Press E to pickup " + hitObject.name;
+                    if (Input.GetKey("e"))
+                    {
+                        ObjectInHand = true;
+                        UnityEngine.Object.Destroy(hitObject);
+                    }
+                }
+
+            }
+            else
+            {
+                ObjectFocus = false;
+                InteractText = "";
+            }
         }
 
 
