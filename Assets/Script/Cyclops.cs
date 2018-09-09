@@ -21,7 +21,7 @@ public class Cyclops : MonoBehaviour {
 		health = health - cost;
 		if (health <= 0) {
 			Debug.Log ("ima dead Cyclops");
-			Destroy (this.gameObject);
+			Destroy (this.gameObject); //this can be changed to a victory screen
 		}
 	}
 }
