@@ -11,6 +11,8 @@ public class EnemyContoller : MonoBehaviour {
     public float attackRadius = 30f;
     public Animator cyclopsAnimator;
 
+    public GameObject EyeSphere;
+
     private Transform target;
     private NavMeshAgent agent;
 
@@ -32,17 +34,20 @@ public class EnemyContoller : MonoBehaviour {
 	}
 
     void SetIdleBoolVariable() {
+        EyeSphere.SetActive(true);
         cyclopsAnimator.SetBool("IsMoving", false);
         cyclopsAnimator.SetBool("Resting", true);
     }
     void SetRunBoolVariable()
     {
+        EyeSphere.SetActive(false);
         cyclopsAnimator.SetBool("IsMoving", true);
         cyclopsAnimator.SetBool("WithinAttackRange", false);
         cyclopsAnimator.SetBool("Resting", false);
     }
     void SetAttack1BoolVariable()
     {
+        EyeSphere.SetActive(false);
         cyclopsAnimator.SetBool("IsMoving", false);
         cyclopsAnimator.SetBool("WithinAttackRange", true);
         cyclopsAnimator.SetBool("Resting", false);
@@ -55,6 +60,7 @@ public class EnemyContoller : MonoBehaviour {
 
         if (restTimer <= 0)
         {
+            
             if (distance <= attackRadius)
             {
                 SetAttack1BoolVariable();
@@ -68,6 +74,7 @@ public class EnemyContoller : MonoBehaviour {
             }
         }
         else {
+            
             Vector3 newDir = Vector3.RotateTowards(transform.forward, target.transform.position, 5, 0.0f);
             transform.rotation = Quaternion.LookRotation(newDir);
             agent.isStopped = true;
