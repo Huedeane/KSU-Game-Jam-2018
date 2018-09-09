@@ -23,6 +23,8 @@ public class boulder : MonoBehaviour {
 		if (c.gameObject.tag == "test") {
 //			Debug.Log ("ima dead boulder");
 			Destroy (this.gameObject); 
+			GameObject particleEffect = Resources.Load<GameObject> ("Particles/ClubRockParticles");
+			Instantiate(particleEffect, boulderPoints[0].position, Quaternion.identity);
 
 			for (int i = 0;i < boulderPoints.Length; i++){
 				float x = Random.Range (-1f, 1f);

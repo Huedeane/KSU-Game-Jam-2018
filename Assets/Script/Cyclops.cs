@@ -22,6 +22,11 @@ public class Cyclops : MonoBehaviour {
 		if (health <= 0) {
 			Debug.Log ("ima dead Cyclops");
 			Destroy (this.gameObject); //this can be changed to a victory screen
+
+			GameObject particleEffect = Resources.Load<GameObject> ("Particles/ClubRockParticles");
+			Instantiate(particleEffect, this.transform.position, Quaternion.identity);
+			GameObject End = Resources.Load<GameObject> ("EndGame");
+			Instantiate(End, this.transform.position, Quaternion.identity);
 		}
 	}
 }
