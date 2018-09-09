@@ -12,6 +12,8 @@ public class EnemyContoller : MonoBehaviour {
     public Animator cyclopsAnimator;
 
     public GameObject EyeSphere;
+    public CapsuleCollider EyeSphereCollider;
+    public BoxCollider HitScanCollider;
 
     private Transform target;
     private NavMeshAgent agent;
@@ -22,7 +24,10 @@ public class EnemyContoller : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         cyclopsAnimator = GetComponent<Animator>();
-        
+        EyeSphereCollider = EyeSphere.GetComponent<CapsuleCollider>();
+        HitScanCollider = GameObject.Find("HitScan").GetComponent<BoxCollider>();
+
+
         SetIdleBoolVariable();
         restTimerCountdown = restTimer;
 
@@ -33,21 +38,27 @@ public class EnemyContoller : MonoBehaviour {
 		
 	}
 
-    void SetIdleBoolVariable() {
-        EyeSphere.SetActive(true);
+    public void SetIdleBoolVariable() {
+        HitScanCollider.enabled = false;
+        EyeSphereCollider.enabled = true;
         cyclopsAnimator.SetBool("IsMoving", false);
         cyclopsAnimator.SetBool("Resting", true);
     }
+
+    public void setTime() {
+        restTimer = restTimerCountdown;
+    }
     void SetRunBoolVariable()
     {
-        EyeSphere.SetActive(false);
+        HitScanCollider.enabled = false;
+        EyeSphereCollider.enabled = false;
         cyclopsAnimator.SetBool("IsMoving", true);
         cyclopsAnimator.SetBool("WithinAttackRange", false);
         cyclopsAnimator.SetBool("Resting", false);
     }
     void SetAttack1BoolVariable()
     {
-        EyeSphere.SetActive(false);
+        EyeSphereCollider.enabled = false;
         cyclopsAnimator.SetBool("IsMoving", false);
         cyclopsAnimator.SetBool("WithinAttackRange", true);
         cyclopsAnimator.SetBool("Resting", false);
@@ -74,11 +85,10 @@ public class EnemyContoller : MonoBehaviour {
             }
         }
         else {
-            
+            SetIdleBoolVariable();
             Vector3 newDir = Vector3.RotateTowards(transform.forward, target.transform.position, 5, 0.0f);
             transform.rotation = Quaternion.LookRotation(newDir);
             agent.isStopped = true;
-            SetIdleBoolVariable();
             restTimer -= Time.deltaTime;
         }
 	}
@@ -93,6 +103,8 @@ public class EnemyContoller : MonoBehaviour {
     void Hit()
     {
         StartCoroutine(GameObject.Find("FPSController").GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().CameraShake());
+        HitScanCollider.enabled = true;
+
     }
 
     void FootR()

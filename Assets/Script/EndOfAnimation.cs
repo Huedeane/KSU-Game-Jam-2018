@@ -22,7 +22,10 @@ public class EndOfAnimation : StateMachineBehaviour {
         float myTime = myAnimatorClip[0].clip.length * animationState.normalizedTime;
 
         if (myTime >= myAnimatorClip[0].clip.length && myAnimatorClip[0].clip.name.Equals("Attack1")) {
-          
+            
+            
+            GameObject.Find(name: "Cyclops").GetComponent<EnemyContoller>().setTime();
+            GameObject.Find(name: "Cyclops").GetComponent<EnemyContoller>().SetIdleBoolVariable();
             animator.Play("Idle");
         }
     }

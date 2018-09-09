@@ -15,7 +15,7 @@ public class Cyclops : MonoBehaviour {
 	void Update () {
 		
 	}
-	void OnCollisionEnter(Collision c)
+	void OnTriggerEnter(Collider c)
 	{
 		Debug.Log ("Eggs");
 		health = health - cost;

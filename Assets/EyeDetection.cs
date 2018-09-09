@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class EyeDetection : MonoBehaviour {
 
-    private void OnTriggerEnter(Collider collision)
-    {
-        Debug.Log(collision.name);
-        if (collision.name.Equals("EyeSphere")) {
-            Debug.Log("Work");
 
-        }   
+    public void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.name);
+        if(other.tag == "eye")
+        {
+            Debug.Log("EYE HIT!");
+        }
     }
 
 }

@@ -17,8 +17,9 @@ public class boulder : MonoBehaviour {
 	void Update () {
 		
 	}
-	void OnCollisionEnter(Collision c)
+	void OnTriggerEnter(Collider c)
 	{
+        Debug.Log(c.gameObject);
 //		Debug.Log ("Eggs");
 		if (c.gameObject.tag == "test") {
 //			Debug.Log ("ima dead boulder");
