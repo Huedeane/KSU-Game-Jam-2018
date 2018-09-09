@@ -208,7 +208,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_NextStep = m_StepCycle + .5f;
         }
 
-        IEnumerator CameraShake()
+        public IEnumerator CameraShake()
         {
             Vector3 cameraOriginalPos = CharacterCamera.transform.localPosition;
 

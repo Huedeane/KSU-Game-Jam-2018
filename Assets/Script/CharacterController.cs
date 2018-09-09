@@ -75,7 +75,7 @@ public class CharacterController : MonoBehaviour {
             
         }
 
-        if (Input.GetKey("space")) {
+        if (Input.GetKey("p")) {
             Debug.Log("Starting");
             //StartCoroutine(CameraShake());
         }
