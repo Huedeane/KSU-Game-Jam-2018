@@ -21,11 +21,11 @@ GameObject:
   - component: {fileID: 4472761937487678}
   - component: {fileID: 33776479965562266}
   - component: {fileID: 23219728581374188}
-  - component: {fileID: 135783022274121816}
   - component: {fileID: 54640933436641094}
+  - component: {fileID: 65783505034558754}
   m_Layer: 0
   m_Name: ColectableRock
-  m_TagString: Untagged
+  m_TagString: PickupAble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,8 +37,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1078438731398276}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.97}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.44724846, y: 4.091963, z: 8.2623005}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -84,7 +84,7 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1078438731398276}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 45d2aa569a721994dabecb4260f1db3e, type: 3}
 --- !u!54 &54640933436641094
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -100,8 +100,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &135783022274121816
-SphereCollider:
+--- !u!65 &65783505034558754
+BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -110,5 +110,5 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 10.66874, y: 11.783925, z: 10.447124}
   m_Center: {x: 0, y: 0, z: 0}

@@ -75,13 +75,9 @@ public class CharacterController : MonoBehaviour {
             
         }
 
-<<<<<<< HEAD
-        if (Input.GetButtonDown("Fire1")) {
-            //Debug.Log("Starting");
-=======
+
         if (Input.GetKey("space")) {
             Debug.Log("Starting");
->>>>>>> master
             StartCoroutine(CameraShake());
         }
 
@@ -134,13 +130,8 @@ public class CharacterController : MonoBehaviour {
             yield return null;
         }
 
-<<<<<<< HEAD
-        m_CharacterCamera.transform.localPosition = cameraOriginalPos;
-        //Debug.Log("Ending");
-=======
         CharacterCamera.transform.localPosition = cameraOriginalPos;
         Debug.Log("Ending");
->>>>>>> master
     }
 
     void PickupObject() {

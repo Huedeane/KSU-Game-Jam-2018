@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4747600252450616}
   - component: {fileID: 33541574994727574}
   - component: {fileID: 23031817601857828}
-  - component: {fileID: 135730062903062784}
   - component: {fileID: 54467068001410726}
+  - component: {fileID: 65480333603013216}
   m_Layer: 0
   m_Name: rock
   m_TagString: test
@@ -37,8 +37,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1970416044606242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.96, y: -0.62146235, z: -8.54}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: -5.3365874, y: -1.55, z: 8.904733}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9023008405bad2d479ca1596d9357cb2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,7 +84,7 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1970416044606242}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 45d2aa569a721994dabecb4260f1db3e, type: 3}
 --- !u!54 &54467068001410726
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -100,8 +100,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &135730062903062784
-SphereCollider:
+--- !u!65 &65480333603013216
+BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -110,5 +110,5 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 10.66874, y: 11.783925, z: 10.447124}
   m_Center: {x: 0, y: 0, z: 0}
