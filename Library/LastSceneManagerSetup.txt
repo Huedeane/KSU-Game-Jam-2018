@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Menu/CreditsMenu.unity
+- path: Assets/Scenes/PlayerTest/PlayerTest.unity
   isLoaded: 1
   isActive: 1
